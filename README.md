@@ -17,8 +17,7 @@ enum SmoothingExponent {
 
 int updateEMA(int newValue, int currentEMA, SmoothingExponent smoothingExponent)
 {
-    return ((newValue << smoothingExponent) + (currentEMA << 10) - (currentEMA << smoothingExponent)) >> 10;
-}
+    return ((((newValue << 4) >> smoothingExponent) + (currentEMA << 4) - ((currentEMA << 4) >> smoothingExponent)) >> 4);
 
 ```
 
@@ -42,7 +41,7 @@ enum SmoothingExponent {
 
 int updateEMA(int newValue, int currentEMA, SmoothingExponent smoothingExponent)
 {
-    return ((newValue << smoothingExponent) + (currentEMA << 10) - (currentEMA << smoothingExponent)) >> 10;
+    return ((((newValue << 4) >> smoothingExponent) + (currentEMA << 4) - ((currentEMA << 4) >> smoothingExponent)) >> 4);
 }
 
 void setup() {
